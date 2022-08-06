@@ -1,0 +1,23 @@
+version: '4.11'
+services:
+  php-apache-environment:  
+    image: php:7.1-apache
+    container_name: php-apache-container
+    ports:
+     - 80:80
+    links:
+     - mysql
+    volumes:
+     - ./public-html/:/var/www/html/
+
+version: '4.11'
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql-container
+    volumes:
+      - /var/lib/mysq
+    environment:
+      MYSQL_ROOT_PASSWORD: talker-root-password
+    ports:
+      - 8080:8080
